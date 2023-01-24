@@ -1,0 +1,79 @@
+class healthfitness:
+    def __init__(self):
+        self.activity_log = {}
+
+    def log_activity(self, activity, time):
+        if activity in self.activity_log:
+            self.activity_log[activity] = time
+        else:
+            self.activity_log[activity] = time
+
+    def view_log(self):
+        for activity, duration in self.activity_log.items():
+            print(f"{activity}: {duration} minutes")
+    def total_duration(self):
+        total = 0
+        for duration in self.activity_log.values():
+            total += duration
+        return total
+    def calculate_bmi(self, weight, height):
+        if weight <=0 or height <= 0:
+            return "N/A"
+        bmi = weight / (height/100)**2
+        if bmi < 18.5:
+            return "Underweight"
+        elif bmi < 25:
+            return "Normal"
+        elif bmi < 30:
+            return "Overweight"
+        else:
+            return "Obese"
+
+tracker = healthfitness()
+
+while True:
+    activity = input("Enter the activity you want to add: ")
+    while True:
+            time = int(input("Enter duration of the activity: "))
+            break
+    tracker.log_activity(activity, time)
+    if input("Do you want to log another workout? (yes/no)") in ['no','n']:
+        break
+
+weight = float(input("Enter your weight in kgs: "))
+height = float(input("Enter your height in cm: "))
+bmi = tracker.calculate_bmi(weight, height)
+print("Your BMI is: ", bmi)
+tracker.view_log()
+print("Total duration:",tracker.total_duration())
+
+class Meal:
+
+    def __init__(self):
+        self.meals = []
+   
+    def add_meal(self):
+        name = input("enter name of meal: ")
+        while True:
+                calories = int(input("Enter number of calories: "))
+                break
+        while True:
+                print(protein = int(input("Enter protein content of meal in grams: ")))
+                break
+        while True:
+                fat = int(input("Enter fat content of meal in grams: "))
+                break
+        meal = Meal(name,calories,protein,fat)
+        self.meals.append(meal)
+
+    def view_log(self):
+        for meal in self.meals:
+            print(f"{meal.name}, {meal.calories}, {meal.protein}, {meal.fat}")
+
+tracker = Meal()
+
+while True:
+    tracker.add_meal()
+    if input("Do you want to log another meal? (yes/no)") in ['no','n']:
+        break
+tracker.view_log()
